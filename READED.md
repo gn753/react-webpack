@@ -11,3 +11,7 @@ https://github.com/pmmmwh/react-refresh-webpack-plugin
 4. 아마 내 생각에 CRA에는 기본으로 핫리로딩이 탑재되어 있을 것으로 추측됨.
 
 Require는 node의 모듈시스템
+
+<!-- 타입스크립트 문제  참조-->
+
+https://github.com/contentful/contentful-management.js/issues/848

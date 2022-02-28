@@ -1,24 +1,22 @@
 import path from "path";
 import type { Configuration as DevServerConfiguration } from "webpack-dev-server";
 import type { Configuration } from "webpack";
-import ReactRefreshWebpackPlugin from "@pmmmwh/react-refresh-webpack-plugin";
+import ReactRefreshWebpackPlugin from "@pmmmwh/react-refresh-webpack-plugin"; //핫리로딩
 import ForkTsCheckerWebpackPlugin from "fork-ts-checker-webpack-plugin"; // ts 변환 속도 향상
-// 핫리로딩 플러그인
-const devServer: DevServerConfiguration = {};
+
 const config: Configuration = {
   name: "wordrelady-setting",
   mode: "development",
   devtool: "eval",
   resolve: {
-    extensions: ["tsx", "ts", "json", "js", "jsx"], //확장자 이름
+    extensions: [".tsx", ".ts", ".json", ".js", ".jsx"], //확장자 이름
   },
 
   module: {
     rules: [
       // 규칙
       {
-        test: /\.tsx/,
-        use: "ts-loader",
+        test: /\.(js|jsx|tsx|ts)$/,
         exclude: /node_modules/,
         loader: "babel-loader",
         options: {
@@ -39,6 +37,11 @@ const config: Configuration = {
             "react-refresh/babel",
           ],
         },
+      },
+      {
+        test: /\.(js|jsx|tsx|ts)$/,
+        exclude: /node_modules/,
+        loader: "ts-loader",
       },
     ],
   },
