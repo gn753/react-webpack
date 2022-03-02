@@ -1,23 +1,22 @@
-import path from "path";
+import * as path from "path";
 import type { Configuration as DevServerConfiguration } from "webpack-dev-server";
-import type { Configuration } from "webpack";
+import * as webpack from "webpack";
 import ReactRefreshWebpackPlugin from "@pmmmwh/react-refresh-webpack-plugin"; //핫리로딩
-import ForkTsCheckerWebpackPlugin from "fork-ts-checker-webpack-plugin"; // ts 변환 속도 향상
 
-const config: Configuration = {
-  name: "wordrelady-setting",
+const config: webpack.Configuration = {
+  name: "moya",
   mode: "development",
   devtool: "eval",
   resolve: {
-    extensions: [".tsx", ".ts", ".json", ".js", ".jsx"], //확장자 이름
+    extensions: [".jsx", ".js", ".tsx", ".ts"], //확장자 이름
   },
 
   module: {
     rules: [
       // 규칙
       {
-        test: /\.(js|jsx|tsx|ts)$/,
-        exclude: /node_modules/,
+        test: /\.(tsx|ts)$/,
+        exclude: path.join(__dirname, "node_modules"),
         loader: "babel-loader",
         options: {
           presets: [
@@ -30,6 +29,7 @@ const config: Configuration = {
                 debug: true,
               },
             ],
+            "@babel/preset-typescript",
             "@babel/preset-react",
           ],
           plugins: [
@@ -38,11 +38,6 @@ const config: Configuration = {
           ],
         },
       },
-      {
-        test: /\.(js|jsx|tsx|ts)$/,
-        exclude: /node_modules/,
-        loader: "ts-loader",
-      },
     ],
   },
 
@@ -50,14 +45,14 @@ const config: Configuration = {
     app: "./client",
     //최상위 루트.js하나만 경로로 설정 시 나머지는 같이 끌려온다.
   },
-  plugins: [new ReactRefreshWebpackPlugin(), new ForkTsCheckerWebpackPlugin()],
+  plugins: [new ReactRefreshWebpackPlugin()],
   output: {
     path: path.join(__dirname, "dist"), // 특정 경로로 파일을 모아준다.
-    filename: "app.js", // 합쳐서 만들어준것, 결과물의 이름
+    filename: "app.bundle.js", // 합쳐서 만들어준것, 결과물의 이름
     publicPath: "/dist",
   },
   devServer: {
-    devMiddleware: { publicPath: "/dist/" },
+    devMiddleware: { publicPath: "/dist" },
     static: { directory: path.join(__dirname) }, //절대경로
     hot: true,
   },
