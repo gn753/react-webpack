@@ -1,13 +1,15 @@
+import React from "react";
 import styled from "@emotion/styled";
 import { useState } from "react";
-import React from "react";
+
 type Props = {
   categoryList: string[];
   selectSortKey: (arg: string) => void;
   selectedSectorList: string[];
   startupData: string[];
   categoryData: string[];
-  selectKeyword: (arg: string) => void;
+  setIdentifiersString: (arg: string) => void;
+  searchNews: (str: string) => void;
 };
 
 type Title = "Category" | "Sector" | "Startup";
@@ -18,7 +20,8 @@ const KeywordSelect = ({
   selectedSectorList,
   startupData,
   categoryData,
-  selectKeyword,
+  setIdentifiersString,
+  searchNews
 }: Props) => {
   const [keywordTitle, setKeywordTitle] = useState<Title>("Sector");
 
@@ -28,10 +31,14 @@ const KeywordSelect = ({
     setKeywordTitle(title);
   };
 
+  const fetchNewsApi = (identifier: string) => {
+    searchNews(identifier);
+  };
+
   return (
     <KeywordSelectWrap>
       <KeywordSelectTitles>
-        {keywordTitleList.map((item) => (
+        {keywordTitleList.map(item => (
           <KeywordTitleItem
             key={item}
             onClick={() => setTitle(item)}
@@ -45,23 +52,30 @@ const KeywordSelect = ({
         <KeywordListContainer>
           <CategoryList>
             <ul>
-              {categoryList.map((sortKeyItem) => (
+              {categoryList.map(sortKeyItem => (
                 <CategoryListItem
                   key={`Sector-${sortKeyItem}`}
                   onClick={() => selectSortKey(sortKeyItem)}
                 >
                   <span>{sortKeyItem}</span>
                   <img
-                    src='/images/keyword-arrow.svg'
-                    alt='섹터 탭 키워드 정렬 화살표'
+                    src="/images/keyword-arrow.svg"
+                    alt="섹터 탭 키워드 정렬 화살표"
                   />
                 </CategoryListItem>
               ))}
             </ul>
           </CategoryList>
           <KeywordListWrap>
-            {selectedSectorList.map((keywordItem) => (
-              <KeywordListItem key={keywordItem}>{keywordItem}</KeywordListItem>
+            {selectedSectorList.map(item => (
+              <KeywordListItem
+                key={item}
+                onClick={() => {
+                  fetchNewsApi(item);
+                }}
+              >
+                {item}
+              </KeywordListItem>
             ))}
           </KeywordListWrap>
         </KeywordListContainer>
@@ -70,8 +84,15 @@ const KeywordSelect = ({
         <KeywordListContainer>
           <StartupKeywordList>
             <ul>
-              {startupData.map((item) => (
-                <li key={`Startup-${item}`}>{item}</li>
+              {startupData.map(item => (
+                <li
+                  key={`Startup-${item}`}
+                  onClick={() => {
+                    fetchNewsApi(item);
+                  }}
+                >
+                  {item}
+                </li>
               ))}
             </ul>
           </StartupKeywordList>
@@ -81,11 +102,11 @@ const KeywordSelect = ({
         <KeywordListContainer>
           <StartupKeywordList>
             <ul>
-              {categoryData.map((item) => (
+              {categoryData.map(item => (
                 <li
                   key={`Category-${item}`}
                   onClick={() => {
-                    selectKeyword(item);
+                    fetchNewsApi(item);
                   }}
                 >
                   {item}

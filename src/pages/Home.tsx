@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "@emotion/styled";
-import HomeContainer from "../containers/home/HomeContainer";
+import HomeContainer from "@/containers/home/HomeContainer";
 
 const Home = () => {
   return (

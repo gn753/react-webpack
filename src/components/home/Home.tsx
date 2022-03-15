@@ -1,5 +1,5 @@
-import styled from "@emotion/styled";
 import React from "react";
+import styled from "@emotion/styled";
 
 const Home = () => {
   return (
@@ -33,5 +33,5 @@ const Introduction = styled.div`
   font-weight: bold;
   font-size: 40px;
   line-height: 64px;
-  color: ${(props) => props.theme.primaryColor};
+  color: ${props => props.theme.primaryColor};
 `;

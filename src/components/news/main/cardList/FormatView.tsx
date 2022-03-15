@@ -17,7 +17,7 @@ const FormatView = () => {
         {(function test() {
           switch (true) {
             case newsFormats === "Image":
-              return <ImageArticleList dummyData={dummyData} />;
+              return <ImageArticleList />;
             case newsFormats === "Text":
               return <TextArticleList dummyData={dummyData} />;
             default:

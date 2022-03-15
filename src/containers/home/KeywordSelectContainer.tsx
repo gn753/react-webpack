@@ -1,18 +1,22 @@
-import KeywordSelect from "../../components/home/KeywordSelect";
-import sector from "@/assets/sector.json";
-import startup from "@/assets/startup.json";
-import category from "@/assets/category.json";
-import { useState } from "react";
-import React from "react";
+import KeywordSelect from "@/components/home/KeywordSelect";
+import sector from "../../assets/sector.json";
+import startup from "../../assets/startup.json";
+import category from "../../assets/category.json";
+import React, { useState } from "react";
+
 type sectorKeywordType = {
   [data: string]: string[];
 };
 
 type Props = {
-  selectKeyword: (arg: string) => void;
+  setIdentifiersString: (arg: string) => void;
+  searchNews: (str: string) => void;
 };
 
-const KeywordSelectContainer = ({ selectKeyword }: Props) => {
+const KeywordSelectContainer = ({
+  setIdentifiersString,
+  searchNews,
+}: Props) => {
   const [sectorKeyword] = useState<sectorKeywordType>(sector);
   const [selectedKey, setSelectedKey] = useState<string>("A");
   const [selectedSectorList, setSelectedSectorList] = useState<string[]>(
@@ -33,7 +37,8 @@ const KeywordSelectContainer = ({ selectKeyword }: Props) => {
       selectedSectorList={selectedSectorList}
       startupData={startup.startup}
       categoryData={category.category}
-      selectKeyword={selectKeyword}
+      setIdentifiersString={setIdentifiersString}
+      searchNews={searchNews}
     />
   );
 };
