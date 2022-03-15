@@ -108,8 +108,11 @@ const style = css`
     position: relative;
   }
   body {
+    display: grid;
+    grid-template-rows: 66px auto 198px;
     line-height: 1;
     height: 100vh;
+    /* height: 100vh; */
     position: relative;
   }
   ol,

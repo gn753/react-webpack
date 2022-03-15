@@ -1,13 +1,14 @@
 import React from "react";
 import PersonalizeNav from "./nav";
-import MainContainer from "@/components/news/main/MainContainer";
+import TabRender from "@/components/news/TabRender";
+import  MainContainer  from '@/components/news/main/MainContainer';
 import TabListContainer from "@/components/news/tabs/TabListContainer";
 
 const NewsContainer = () => {
   return (
     <>
       <PersonalizeNav />
-      <TabListContainer />
+      <TabListContainer></TabListContainer>
       <MainContainer />
     </>
   );

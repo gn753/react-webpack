@@ -13,7 +13,7 @@ const GlobalHeader = () => {
   }
 
   return (
-    <section className='GlobalHeader'>
+    <Header>
       <Wrap>
         <CommonContainer>
           <Inner>
@@ -46,14 +46,17 @@ const GlobalHeader = () => {
           </Inner>
         </CommonContainer>
       </Wrap>
-    </section>
+    </Header>
   );
 };
 
 export default GlobalHeader;
-
-const Wrap = styled.header`
-  position: absolute;
+const Header = styled.header`
+  position: relative;
+  height: 68px;
+`;
+const Wrap = styled.div`
+  position: fixed;
   top: 0;
   right: 0;
   left: 0;

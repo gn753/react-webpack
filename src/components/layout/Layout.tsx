@@ -7,7 +7,7 @@ interface AuxProps {
   children: ReactChild | ReactChildren;
 }
 
-export const Layout: React.FC<AuxProps> = props => {
+export const Layout: React.FC<AuxProps> = (props) => {
   return (
     <Root>
       <GlobalHeader />
@@ -18,7 +18,7 @@ export const Layout: React.FC<AuxProps> = props => {
 };
 
 const Root = styled.div`
-  display: grid;
+  /* display: grid;
   height: 100vh;
-  grid-template-rows: 66px auto 198px;
+  grid-template-rows: 66px auto 198px; */
 `;
