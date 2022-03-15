@@ -1,8 +1,8 @@
 import styled from "@emotion/styled";
-import React,{ useState } from "react";
-import { useNewsList } from "../../hooks/useNewsList";
-
-const options: string[] = ["정렬순", "최신순", "인기순"];
+import React, { useState } from "react";
+import { useNewsFilter } from "@/components/news/hooks/useNewsFilter";
+import { MouseEvent } from "react";
+const options: string[] = ["top" ,"latest" , "populer"];
 
 interface Props {
   newsCurOption: String;
@@ -12,25 +12,24 @@ interface Props {
 const SortOptionList = ({ newsCurOption, setNewsCurOption }: Props) => {
   const [isActive, setIsActive] = useState<boolean>(false);
 
-  const { reportOptionToAPI } = useNewsList();
+  const { reportOptionToAPI } = useNewsFilter();
 
   function showDropDown(option: string) {
     setNewsCurOption(option);
     setIsActive(!isActive);
   }
-
   return (
     <ListWrap>
-      <DropDownBtn onClick={e => setIsActive(!isActive)}>
+      <DropDownBtn onClick={(e: MouseEvent) => setIsActive(!isActive)}>
         {newsCurOption}
-        <i className="nav-bottom"></i>
+        <i className='nav-bottom'></i>
       </DropDownBtn>
       <DropDownList>
         {isActive &&
-          options.map(option => (
+          options.map((option) => (
             <li
-              className="dropdown-item"
-              onClick={() => {
+              className='dropdown-item'
+              onClick={(e: MouseEvent) => {
                 showDropDown(option);
                 reportOptionToAPI(option);
               }}

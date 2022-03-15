@@ -4,7 +4,6 @@ import KeywordSelectContainer from "@/containers/home/KeywordSelectContainer";
 import { useSearch } from "@/hooks/useSearch";
 import Search from "@/components/home/Search";
 import CommonContainer from "@/components/layout/CommonContainer";
-import NewsTabList from "@/components/news/nav/NewsTabList";
 
 const PersonalizeNav = () => {
   const {
@@ -35,7 +34,6 @@ const PersonalizeNav = () => {
             />
           )}
         </div>
-        <NewsTabList />
       </CommonContainer>
     </Wrap>
   );
@@ -50,7 +48,7 @@ const Wrap = styled.section`
     #dff8f4 6%,
     #fdddd2 185%
   );
-  height: auto;
+  height: 373px;
   .pt-31 {
     padding-top: 31px;
   }

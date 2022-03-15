@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { getNewList, NewsType, SearchPayload } from "@/api/newsListApi"
+import { getNewList, NewsType, SearchPayload } from "@/api/newsListApi";
 export const fetchNewList = createAsyncThunk(
   "newlist/fetchNewsList",
   async (searchPayload: SearchPayload, thunkApi) => {
@@ -8,6 +8,7 @@ export const fetchNewList = createAsyncThunk(
     if (response.status !== 200) {
       return thunkApi.rejectWithValue(response.data.error);
     }
+
     return response.data;
   }
 );
@@ -16,20 +17,22 @@ type NewsListState = {
   newListData: NewsType[];
   loading: boolean;
   error: any;
+  active:boolean,
 };
 
 const initialState: NewsListState = {
   newListData: [],
   loading: false,
-  error: null
+  error: null,
+  active:false,
 };
 
 const NewsListSlice = createSlice({
   name: "newsList",
   initialState,
   reducers: {},
-  extraReducers: builder => {
-    builder.addCase(fetchNewList.pending, state => {
+  extraReducers: (builder) => {
+    builder.addCase(fetchNewList.pending, (state) => {
       state.loading = true;
       state.newListData = [];
       state.error = null;
@@ -46,7 +49,7 @@ const NewsListSlice = createSlice({
       state.loading = false;
       state.error = action.error.message;
     });
-  }
+  },
 });
 
 export default NewsListSlice.reducer;

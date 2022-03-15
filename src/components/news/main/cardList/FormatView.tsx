@@ -1,40 +1,46 @@
 import styled from "@emotion/styled";
 import React, { useEffect } from "react";
-import { useNewsList } from "@/components/news/hooks/useNewsList";
-import dummyData from "@/components/news/common/dummyData.json";
+import { useNewsFormats } from "@/components/news/hooks/useNewsFormat";
 import CommonContainer from "@/components/layout/CommonContainer";
 import TextArticleList from "@/components/news/main/cardList/TextArticleList";
 import ImageArticleList from "@/components/news/main/cardList/ImageArticleList";
 
 const FormatView = () => {
-  const { newsFormats } = useNewsList();
-
+  const { NewsFormats } = useNewsFormats();
   useEffect(() => {}, []);
-
+  console.log(NewsFormats, "포맷");
   return (
     <CommonContainer>
-      <Content>
-        {(function test() {
-          switch (true) {
-            case newsFormats === "Image":
-              return <ImageArticleList />;
-            case newsFormats === "Text":
-              return <TextArticleList dummyData={dummyData} />;
-            default:
-              return null;
-          }
-        })()}
-      </Content>
+      {(function test() {
+        switch (true) {
+          case NewsFormats === "Image":
+            return (
+              <ImageContent>
+                <ImageArticleList />
+              </ImageContent>
+            );
+          case NewsFormats === "Text":
+            return (
+              <TextContent>
+                <TextArticleList />;
+              </TextContent>
+            );
+          default:
+            return null;
+        }
+      })()}
     </CommonContainer>
   );
 };
 
 export default FormatView;
 
-const Content = styled.div`
+const ImageContent = styled.div`
   column-count: 3;
   column-gap: 20px;
   padding-bottom: 280px;
 `;
-
+const TextContent = styled.div`
+  width: 100%;
+`;
 //데이터를 [0]번째 인덱스만 출력하게해라

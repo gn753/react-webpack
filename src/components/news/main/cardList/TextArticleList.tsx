@@ -1,6 +1,7 @@
 import React from "react";
 import { Key } from "react";
 import TextArticle from "./TextArticle";
+import { useAppSelector } from "@/redux/hooks";
 
 interface Props {
   uuid: Key | null | undefined;
@@ -9,19 +10,18 @@ interface Props {
   imageUrls: string[] | null;
 }
 
-const TextArticleList = ({ dummyData }: any) => {
+const TextArticleList = () => {
+  const { newListData } = useAppSelector((state) => state.newsList);
   return (
-
-      <div>
-        {dummyData.map((article: Props) => (
-          <TextArticle
-            key={article.uuid}
-            newsTitle={article.title}
-            newsContent={article.description}
-          />
-        ))}
-      </div>
-
+    <>
+      {newListData.map((article: any) => (
+        <TextArticle
+          key={article.uuid}
+          newsTitle={article.title}
+          newsContent={article.description}
+        />
+      ))}
+    </>
   );
 };
 

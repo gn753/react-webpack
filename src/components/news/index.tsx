@@ -1,13 +1,13 @@
 import React from "react";
 import PersonalizeNav from "./nav";
-import Options from "./main/options";
 import MainContainer from "@/components/news/main/MainContainer";
+import TabListContainer from "@/components/news/tabs/TabListContainer";
 
 const NewsContainer = () => {
   return (
     <>
       <PersonalizeNav />
-      <Options />
+      <TabListContainer />
       <MainContainer />
     </>
   );

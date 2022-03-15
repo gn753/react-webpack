@@ -3,13 +3,13 @@ import { configureStore } from "@reduxjs/toolkit";
 import newsformatReducer from "./news/newsformatSlice";
 import newsListReducer from "./news/newsListSlice";
 import newsSortReducer from "./news/newsSortSlice";
-import useInfoReducer from "./user/useInfoSlice";
+import memberDataReducer from "./member/memberDataSlice";
 export const store = configureStore({
   reducer: {
     newsList: newsListReducer,
     formats: newsformatReducer,
     newsSorts: newsSortReducer,
-    userInfos: useInfoReducer
+    memberDatas: memberDataReducer
   }
 });
 

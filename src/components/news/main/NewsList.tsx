@@ -1,28 +1,27 @@
 import React from "react";
 import { useEffect } from "react";
-import { useNewsList } from '@/components/news/hooks/useNewsList';
-import FormatView from "@/components/news/main/cardList/FormatView"
+import { useNewsFilter } from "@/components/news/hooks/useNewsFilter";
+import FormatView from "@/components/news/main/cardList/FormatView";
 import styled from "@emotion/styled";
 
-
 const NewsList = () => {
-  const { newsSorts } = useNewsList();
+  const { newsSortState } = useNewsFilter();
 
   // useEffect( ()=>{
   //   if(newsSorts === 인기순 쿼리) {
   //     dispatch()
   //   }
   // },[])
-  
+
   return (
     <ViewFilter>
       {(function viewList() {
-        if (newsSorts === "정렬순") {
+        if (newsSortState === "top") {
           return <FormatView />;
-        } else if (newsSorts === "인기순") {
-          return <div>2</div>;
-        } else if (newsSorts === "최신순") {
-          return <div>3</div>;
+        } else if (newsSortState === "latest") {
+          return <FormatView />;
+        } else if (newsSortState === "populer") {
+          return <FormatView />;
         } else {
           return null;
         }

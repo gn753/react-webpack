@@ -2,9 +2,9 @@ import styled from "@emotion/styled";
 import React from "react";
 import CommonContainer from "@/components/layout/CommonContainer";
 import SortOptionContainer from "@/components/news/main/options/SortOptionContainer";
-import { useNewsList } from "../../hooks/useNewsList";
+import { useNewsFormats } from "@/components/news/hooks/useNewsFormat";
 const Options = () => {
-  const { changeToTextFormat, changeToImgFormat } = useNewsList();
+  const { changeToTextFormat, changeToImgFormat } = useNewsFormats();
   return (
     <CommonContainer>
       <Features>
