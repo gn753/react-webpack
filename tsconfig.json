@@ -4,6 +4,12 @@
     "target": "es5",
     "jsx": "react",
     "module": "CommonJS",
-    "esModuleInterop": true
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"],
+      "public/*": ["/public/*"]
+    }
   }
 }
